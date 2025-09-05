@@ -1,0 +1,126 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello RegisterController!{% endblock %}
+
+{% block body %}
+<style>
+  /* Base clair */
+  html, body {
+    background: #f8fafc;         /* gris très clair */
+    color: #0f172a;              /* texte sombre lisible */
+    font: 18px/1.5 sans-serif;
+  }
+
+  .example-wrapper {
+    margin: 1em auto;
+    max-width: 800px;
+    width: 95%;
+  }
+
+  /* Carte du formulaire en clair */
+  fieldset {
+    background: #ffffff;         /* fond blanc propre */
+    border: 1px solid #e5e7eb;   /* bordure douce */
+    border-radius: .5rem;
+    padding: 1rem 1.25rem;
+    box-shadow: 0 1px 2px rgba(15, 23, 42, .06);
+  }
+
+  legend.title {
+    display: flex; justify-content: center;
+    color: #0a58ca;              /* bleu principal */
+    margin-bottom: .75rem;
+    font-weight: 700;
+  }
+
+  /* Forme et rythme */
+  form.formulaire { display: grid; gap: .9rem; }
+  .row { display: grid; gap: .35rem; }
+
+  /* Labels & champs harmonisés (clair) */
+  label { font-weight: 600; }
+  input, button { padding: .6rem .8rem; font: inherit; }
+  input, select, textarea {
+    width: 100%;
+    box-sizing: border-box;
+    background: #ffffff;         /* champs blancs */
+    color: #0f172a;
+    border: 1px solid #d1d5db;   /* gris clair */
+    border-radius: .4rem;
+    line-height: 1.4;
+    transition: border-color .2s, box-shadow .2s, filter .2s;
+  }
+  ::placeholder { color: #9ca3af; } /* placeholder doux */
+
+  /* Focus bien visible (accessibilité) */
+  input:focus-visible, select:focus-visible, textarea:focus-visible {
+    outline: 2px solid #2563eb;
+    outline-offset: 2px;
+    border-color: #2563eb;
+    box-shadow: 0 0 0 .15rem rgba(37,99,235,.15);
+  }
+  /* Survol léger */
+  input:hover, select:hover, textarea:hover { border-color: #bfc5cd; }
+
+  /* Boutons (clair) */
+  .actions { display: flex; justify-content: flex-end; margin-top: .5rem; }
+  .actions button {
+    border: 1px solid #0a58ca;
+    background: #0a58ca;
+    color: #fff;
+    border-radius: .5rem;
+    cursor: pointer;
+    transition: transform .02s, filter .2s, background .2s, border-color .2s;
+  }
+  .actions button:hover { filter: brightness(0.95); }
+  .actions button:active { transform: translateY(1px); }
+  .actions button:disabled { opacity: .6; cursor: not-allowed; }
+
+  /* Erreurs Symfony en clair */
+  .row ul { margin: 0; padding-left: 1.1rem; }
+  .row li { color: #b00020; font-size: .9rem; }
+
+  /* 2 colonnes sur écrans larges */
+  @media (min-width: 720px) {
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: .9rem; }
+  }
+</style>
+
+
+
+<div class="example-wrapper">
+  <h1>Bonjour Créer un compte ✅</h1>
+
+ {{ form_start(registrationForm, { attr: { class: 'formulaire' } }) }}
+  <fieldset>
+    <legend class="title">Créer un compte</legend>
+
+    <div class="grid-2">
+      <div class="row">
+        {{ form_row(registrationForm.name) }}
+      </div>
+      <div class="row">
+        {{ form_row(registrationForm.firstname) }}
+      </div>
+    </div>
+
+    <div class="row">
+      {{ form_row(registrationForm.email) }}
+    </div>
+
+    <div class="row">
+      {{ form_row(registrationForm.plainPassword.first) }}
+    </div>
+    <div class="row">
+      {{ form_row(registrationForm.plainPassword.second) }}
+    </div>
+
+    <div class="actions">
+      <button type="submit">S'inscrire</button>
+    </div>
+  </fieldset>
+
+  {{ form_rest(registrationForm) }}
+{{ form_end(registrationForm) }}
+</div>
+{% endblock %}
