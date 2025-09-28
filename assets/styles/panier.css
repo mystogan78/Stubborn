@@ -1,0 +1,35 @@
+/* Panier — styles légers au-dessus de Bootstrap */
+
+.cart-thumb {
+  width: 90px;
+}
+
+.cart-thumb-img,
+.cart-thumb-placeholder {
+  width: 80px;
+  height: 80px;
+  display: block;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.cart-thumb-placeholder {
+  background: #eee;
+  border: 1px solid #e5e7eb;
+}
+
+.cart-actions form {
+  display: inline-block;
+  margin-left: .25rem;
+}
+
+@media (max-width: 576px) {
+  .cart-thumb {
+    width: 70px;
+  }
+  .cart-thumb-img,
+  .cart-thumb-placeholder {
+    width: 64px;
+    height: 64px;
+  }
+}

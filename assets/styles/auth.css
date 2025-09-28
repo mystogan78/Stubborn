@@ -1,0 +1,6 @@
+.auth-page{min-height:100vh;display:flex;align-items:center;background:#f8fafc}
+.auth-card{border-radius:14px}
+.form-control{padding:.7rem .9rem;border-radius:.6rem}
+.form-control:focus{box-shadow:0 0 0 .2rem rgba(59,130,246,.15);border-color:#3b82f6}
+.auth-submit{padding:.7rem .9rem;border-radius:.6rem}
+.form-check{margin-top:.25rem}

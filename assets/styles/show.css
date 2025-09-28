@@ -1,0 +1,21 @@
+/* Page produit — styles légers au-dessus de Bootstrap */
+.product__image-wrapper {
+  background: #f3f4f6;
+  border-radius: .5rem;
+}
+
+.product__image {
+  object-fit: contain;
+}
+
+.price {
+  letter-spacing: .2px;
+}
+
+/* Limite visuelle proche de votre ancienne "img-hero" */
+@media (min-width: 768px) {
+  .product .ratio {
+    max-width: 700px;
+    margin-inline: auto;
+  }
+}

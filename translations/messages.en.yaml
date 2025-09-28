@@ -1,0 +1,53 @@
+home:
+  featured_title: "Our featured hoodies"
+  featured_subtitle: "Comfy cuts, multiple sizes, Stubborn prints."
+  see_all: "See all products"
+  no_featured: "No featured products at the moment."
+
+products:
+  title: "Products"
+  filters:
+    all: "All"
+  badge:
+    featured: "Favorite"
+  details: "Details"
+  back: "Back to products"
+  picture: "Image"
+  empty: "No products."
+
+product:
+  size: "Size"
+  qty: "Quantity"
+  add_to_cart: "Add to cart"
+  out_of_stock: "(out of stock)"
+
+cart:
+  title: "Your cart"
+  empty: "Your cart is empty."
+  browse: "Browse products"
+  unit_price: "Unit price"
+  line_total: "Line total"
+  total: "Total"
+  remove: "Remove"
+  clear: "Empty cart"
+  checkout: "Checkout"
+  keep_shopping: "← Keep shopping"
+  actions: "Actions"
+
+auth:
+  log_in: "Log in"
+  log_out: "Log out"
+  email: "Email"
+  password: "Password"
+  remember_me: "Remember me"
+  not_registered: "Not registered yet?"
+  sign_up: "Sign up"
+  have_account: "Already have an account?"
+  forgot_password: "Forgot password?"
+  logged_in_as: "Logged in as %user%"
+  create_account: "Create an account"
+  password_confirm: "Confirm password"
+
+user:
+  name: "Last name"
+  firstname: "First name"

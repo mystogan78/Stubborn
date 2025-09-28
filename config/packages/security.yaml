@@ -21,14 +21,28 @@ security:
         login_path: app_login
         check_path: app_login
         enable_csrf: true
+        username_parameter: email
+        password_parameter: password
+        default_target_path: app_home
+
+      remember_me:
+        secret: '%kernel.secret%'
+        lifetime: 604800 # 1 week in seconds
+        path: /
+
+        
       logout:
         path: app_logout
+        target: app_home
         # target: app_home  # décommente si tu veux rediriger après logout
 
   access_control:
     - { path: ^/login, roles: PUBLIC_ACCESS }
     - { path: ^/register, roles: PUBLIC_ACCESS }
-    - { path: ^/home, roles: ROLE_USER }
+    - { path: ^/verify/email, roles: PUBLIC_ACCESS }
+    - { path: ^/home, roles: PUBLIC_ACCESS }
+    - { path: ^/admin, roles: ROLE_ADMIN }
+    - { path: ^/checkout, roles: ROLE_USER }
 
 when@test:
   security:

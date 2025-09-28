@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+{% block title %}Paiement annulé{% endblock %}
+{% block body %}
+<div class="container py-5">
+  <div class="alert alert-warning">
+    Paiement annulé. Vous pouvez réessayer.
+  </div>
+  <a class="btn btn-outline-secondary" href="{{ path('app_panier_show') }}">Retour au panier</a>
+</div>
+{% endblock %}
