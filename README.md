@@ -44,6 +44,7 @@ Projet de création d'un site e-commerce pour une vente en ligne de sweat shirt 
 ├── products/<br>
 ├── register/<br>
 ├── base.html.twig/<br>
-✴️<br>
-├── register<br>
+⚙️.env
+💲.env.dev.local
+🔡README.md
 
