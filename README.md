@@ -49,4 +49,17 @@ Projet de création d'un site e-commerce pour une vente en ligne de sweat shirt 
 🔡README.md<br>
 
 ## ⚙️ Installation
-***symfony new STUBBORN --webapp***
+
+***💲symfony new STUBBORN --webapp***
+***💲cd STUBBORN/***
+
+
+## 🌐 Lancer l'application
+
+***💲symfony server:start --port=8001***
+***Web server listening                                                                                                
+      The Web server is using PHP CGI 8.2.12                                                                              
+      http://127.0.0.1:8001***  
+
+
+
