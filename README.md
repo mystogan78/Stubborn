@@ -21,22 +21,22 @@ Projet de création d'un site e-commerce pour une vente en ligne de sweat shirt 
 
 ## 📁 Structure du projet<br>
 
-STUBBORN/<br>
-│ASSET<br>
+### STUBBORN/<br>
+##### ASSET<br>
 ├── controllers/<br>
 ├── styles/<br>
-|CONFIG/<br>
+##### CONFIG/<br>
 ├── packages/<br>
-|PUBLIC/<br>
+##### PUBLIC/<br>
 ├──images/<br>
-|SRC/<br>
+##### SRC/<br>
 ├── controller/<br>
 ├── dataFixtures/<br>
 ├── entity/<br>
 ├── form/<br>
 ├── repository/<br>
 ├── security/<br>
-|TEMPLATES/<br>
+##### TEMPLATES/<br>
 ├── checkout/<br>
 ├── home/<br>
 ├── loginformauthticator/<br>
