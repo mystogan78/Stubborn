@@ -19,4 +19,31 @@ Projet de création d'un site e-commerce pour une vente en ligne de sweat shirt 
 **. STRIPE**<br>
 **. MAILER DSN**<br>
 
-## 📁
+## 📁 Structure du projet<br>
+
+STUBBORN/
+│ASSET
+├── controllers/
+├── styles/
+├CONFIG/
+├── packages/
+├PUBLIC/
+├──images/
+|SRC/
+├── controller
+├── dataFixtures
+├── entity
+├── form
+├── repository
+├── security
+|TEMPLATES
+├── checkout
+├── home
+├── loginformauthticator
+├── panier
+├── products
+├── register
+├── base.html.twig
+✴️
+├── register
+
