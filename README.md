@@ -48,3 +48,4 @@ Projet de création d'un site e-commerce pour une vente en ligne de sweat shirt 
 💲.env.dev.local<br>
 🔡README.md<br>
 
+## ⚙️ Installation
