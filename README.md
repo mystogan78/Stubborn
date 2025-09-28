@@ -6,3 +6,5 @@ Projet de création d'un site e-commerce pour une vente en ligne de sweat shirt 
 . Se connecter (login)<br>
 . Ajouter les produits<br>
 . Utiliser un mode de Paiement<br>
+. Utiliser le mode Administrateur(Backoffice)<br>
+
