@@ -56,7 +56,7 @@ Projet de création d'un site e-commerce pour une vente en ligne de sweat shirt 
 
 ## 🌐 Lancer l'application
 
-***💲symfony server:start --port=8001***
+***💲symfony server:start --port=8001***<br>
 ***Web server listening                                                                                                
       The Web server is using PHP CGI 8.2.12                                                                              
       http://127.0.0.1:8001***  
