@@ -50,7 +50,7 @@ Projet de création d'un site e-commerce pour une vente en ligne de sweat shirt 
 
 ## ⚙️ Installation
 
-***💲symfony new STUBBORN --webapp***
+***💲symfony new STUBBORN --webapp***<br>
 ***💲cd STUBBORN/***
 
 
