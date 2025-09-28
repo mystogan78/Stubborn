@@ -1,18 +1,17 @@
 <?php
 namespace App\Form;
-use App\Entity\Utilisateur; // 👈 IMPORTANT
 
+use App\Entity\Utilisateur;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
-use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints as Assert; // 👈 alias pratique
 
-class RegistrationFormType extends AbstractType
+final class RegistrationFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
@@ -21,29 +20,36 @@ class RegistrationFormType extends AbstractType
                 'label' => 'Nom',
                 'attr' => ['placeholder' => 'Entrez votre nom'],
                 'constraints' => [
-                    new NotBlank(message: 'Veuillez entrer votre nom'),
+                    new Assert\NotBlank(message: 'Veuillez entrer votre nom'),
+                    new Assert\Length(max: 255),
                 ],
             ])
             ->add('firstname', TextType::class, [
                 'label' => 'Prénom',
                 'attr' => ['placeholder' => 'Entrez votre prénom'],
                 'constraints' => [
-                    new NotBlank(message: 'Veuillez entrer votre prénom'),
+                    new Assert\NotBlank(message: 'Veuillez entrer votre prénom'),
+                    new Assert\Length(max: 255),
                 ],
             ])
             ->add('email', EmailType::class, [
                 'label' => 'Email',
                 'attr' => ['placeholder' => 'Entrez votre email'],
                 'constraints' => [
-                    new NotBlank(message: 'Veuillez entrer votre email'),
+                    new Assert\NotBlank(message: 'Veuillez entrer votre email'),
+                    new Assert\Email(message: 'Adresse email invalide'),
+                    new Assert\Length(max: 180),
                 ],
             ])
             ->add('plainPassword', RepeatedType::class, [
                 'type' => PasswordType::class,
-                'mapped' => false,
+                'mapped' => false,                      // ✅ on hash dans le contrôleur
                 'first_options' => [
                     'label' => 'Mot de passe',
-                    'attr' => ['placeholder' => 'Entrez votre mot de passe'],
+                    'attr' => [
+                        'placeholder' => 'Entrez votre mot de passe',
+                        'autocomplete' => 'new-password',
+                    ],
                 ],
                 'second_options' => [
                     'label' => 'Confirmer le mot de passe',
@@ -51,15 +57,18 @@ class RegistrationFormType extends AbstractType
                 ],
                 'invalid_message' => 'Les deux mots de passe doivent correspondre',
                 'constraints' => [
-                    new NotBlank(message: 'Veuillez entrer un mot de passe'),
+                    new Assert\NotBlank(message: 'Veuillez entrer un mot de passe'),
+                    new Assert\Length(min: 8, minMessage: 'Au moins 8 caractères'),
+                   
                 ],
             ]);
     }
-                
+
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             'data_class' => Utilisateur::class,
+            'validation_groups' => ['Default'], //  'hashed' 👈
         ]);
     }
 }

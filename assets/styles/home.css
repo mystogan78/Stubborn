@@ -1,0 +1,16 @@
+/* assets/styles/home.css */
+.card .product-img{
+  height: 220px;           /* taille d’aperçu cohérente */
+  object-fit: contain;     /* ne déforme pas le visuel */
+  background: #f8f9fa;     /* léger fond gris */
+}
+
+.card-title{
+  font-weight: 600;
+  font-size: 1.05rem;
+  margin-bottom: .25rem;
+}
+
+.price{
+  font-weight: 700;
+}

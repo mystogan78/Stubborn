@@ -1,20 +1,155 @@
+{# templates/panier/index.html.twig #}
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello PanierController!{% endblock %}
+{% block title %}{{ 'cart.title'|trans }}{% endblock %}
+
+{% block stylesheets %}
+  {{ parent() }}
+  <link rel="stylesheet" href="{{ asset('styles/panier.css') }}">
+{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+<div class="container py-4">
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+  <h1 class="h3 mb-4">{{ 'cart.title'|trans }}</h1>
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code>C:/Users/marc_/Stubborn/src/Controller/PanierController.php</code></li>
-        <li>Your template at <code>C:/Users/marc_/Stubborn/templates/panier/index.html.twig</code></li>
-    </ul>
+  {# Flashes Bootstrap #}
+  {% for label, messages in app.flashes %}
+    {% for message in messages %}
+      <div class="alert alert-{{ label == 'error' ? 'danger' : label }} alert-dismissible fade show" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Fermer"></button>
+      </div>
+    {% endfor %}
+  {% endfor %}
+
+  {% if items is empty %}
+    <div class="alert alert-info">
+      {{ 'cart.empty'|trans }}
+      <a href="{{ path('app_products') }}" class="alert-link">{{ 'cart.browse'|trans }}</a>.
+    </div>
+  {% else %}
+
+    {% set grandTotal = 0 %}
+    <div class="table-responsive">
+      <table class="table align-middle">
+        <thead class="table-light">
+          <tr>
+            <th scope="col">{{ 'products.picture'|trans }}</th>
+            <th scope="col">{{ 'table.product'|trans }}</th> {# sinon remplace par "Produit" #}
+            <th scope="col" class="text-center">{{ 'product.qty'|trans }}</th>
+            <th scope="col" class="text-end">{{ 'cart.unit_price'|trans }}</th>
+            <th scope="col" class="text-end">{{ 'cart.line_total'|trans }}</th>
+            <th scope="col" class="text-end">{{ 'cart.actions'|trans }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for it in items %}
+            {% set grandTotal = grandTotal + it.lineTotal %}
+            <tr>
+              {# 1) Image #}
+              <td class="cart-thumb">
+                {% set imageSrc = it.product.imageUrl
+                  ? asset('images/products/' ~ it.product.imageUrl)
+                  : asset('images/placeholder.png') %}
+                <img
+                  src="{{ imageSrc }}"
+                  alt="{{ it.product.name }}"
+                  class="img-thumbnail cart-thumb-img"
+                  loading="lazy"
+                >
+              </td>
+
+              {# 2) Produit #}
+              <td>
+                <a href="{{ path('app_product_show', { id: it.product.id }) }}"
+                   class="link-body-emphasis text-decoration-none">
+                  {{ it.product.name }}
+                </a>
+              </td>
+
+              {# 3) Qté #}
+              <td class="text-center">
+                <span class="badge text-bg-secondary">{{ it.qty }}</span>
+              </td>
+
+              {# 4) Prix unitaire #}
+              <td class="text-end">
+                {{ (it.product.price / 100)|number_format(2, ',', ' ') }} €
+              </td>
+
+              {# 5) Total ligne #}
+              <td class="text-end fw-semibold">
+                {{ it.lineTotal|number_format(2, ',', ' ') }} €
+              </td>
+
+              {# 6) Actions (ligne) #}
+              <td class="text-end cart-actions">
+                <form action="{{ path('app_panier_decrement', { id: it.product.id }) }}"
+                      method="post" class="d-inline">
+                  <input type="hidden" name="_token"
+                         value="{{ csrf_token('decrement_from_cart' ~ it.product.id) }}">
+                  <button type="submit" class="btn btn-outline-secondary btn-sm"
+                          title="{{ 'product.qty'|trans }} - 1">–</button>
+                </form>
+
+                <form action="{{ path('app_panier_remove', { id: it.product.id }) }}"
+                      method="post" class="d-inline">
+                  <input type="hidden" name="_token"
+                         value="{{ csrf_token('remove_from_cart' ~ it.product.id) }}">
+                  <button type="submit" class="btn btn-outline-danger btn-sm">
+                    {{ 'cart.remove'|trans }}
+                  </button>
+                </form>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+        <tfoot>
+          <tr class="table-light">
+            <th colspan="4" class="text-end">{{ 'cart.total'|trans }}</th>
+            <th class="text-end h6 mb-0">{{ grandTotal|number_format(2, ',', ' ') }} €</th>
+            <th></th>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+
+    {# Actions globales sous le tableau #}
+    <div class="d-flex flex-wrap gap-2 mt-3">
+      <a href="{{ path('app_products') }}" class="btn btn-outline-secondary">
+        {{ 'cart.keep_shopping'|trans }}  {# ta clé contient déjà la flèche ← #}
+      </a>
+
+      <form action="{{ path('app_panier_clear') }}" method="post" class="ms-auto">
+        <input type="hidden" name="_token" value="{{ csrf_token('clear_cart') }}">
+        <button type="submit" class="btn btn-outline-dark">{{ 'cart.clear'|trans }}</button>
+      </form>
+
+      {# Stripe Checkout #}
+      <button id="btn-checkout" type="button" class="btn btn-success">
+        {{ 'cart.checkout'|trans }}
+      </button>
+    </div>
+
+    {# Stripe JS #}
+    <script src="https://js.stripe.com/v3/"></script>
+    <script>
+      const stripe = Stripe('{{ stripe_public_key }}'); // défini dans twig.yaml
+
+      document.getElementById('btn-checkout')?.addEventListener('click', async () => {
+        const res = await fetch('{{ path('stripe_checkout_create') }}', {
+          method: 'POST',
+          headers: { 'X-Requested-With': 'XMLHttpRequest' }
+        });
+        const data = await res.json();
+        if (!res.ok) { alert(data.error || 'Erreur'); return; }
+
+        const { error } = await stripe.redirectToCheckout({ sessionId: data.id });
+        if (error) alert(error.message);
+      });
+    </script>
+
+  {% endif %}
 </div>
 {% endblock %}

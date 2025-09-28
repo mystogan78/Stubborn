@@ -1,0 +1,56 @@
+home:
+  featured_title: "Nos sweats mis en avant"
+  featured_subtitle: "Des coupes confortables, plusieurs tailles, imprimés Stubborn."
+  store_message: " Des sweats doux, responsables et imprimés en France. Livraison 48h, retours sous 30 jours."
+  see_all: "Voir tous les produits"
+  no_featured: "Aucun produit en vedette pour le moment."
+
+products:
+  title: "Produits"
+  filters:
+    all: "Tous"
+  badge:
+    featured: "Coup de cœur"
+  details: "Détails"
+  back: "Retour aux produits"
+  picture: "Image"
+  empty: "Aucun produit."
+
+product:
+  size: "Taille"
+  qty: "Quantité"
+  add_to_cart: "Ajouter au panier"
+  out_of_stock: "(rupture)"
+
+cart:
+  title: "Votre panier"
+  empty: "Votre panier est vide."
+  browse: "Découvrir les produits"
+  unit_price: "Prix unitaire"
+  line_total: "Total ligne"
+  total: "Total"
+  remove: "Retirer"
+  clear: "Vider le panier"
+  checkout: "Passer commande"
+  keep_shopping: "← Continuer vos achats"
+  actions: "Actions"
+ 
+
+auth:
+  log_in: "Connexion"
+  log_out: "Déconnexion"
+  email: "Email"
+  password: "Mot de passe"
+  remember_me: "Se souvenir de moi"
+  not_registered: "Pas encore inscrit ?"
+  sign_up: "Inscription"
+  have_account: "Déjà un compte ?"
+  forgot_password: "Mot de passe oublié ?"
+  logged_in_as: "Connecté en tant que %user%"
+  create_account: "Créer un compte"
+  password_confirm: "Confirmer le mot de passe"
+
+
+user:
+  name: "Nom"
+  firstname: "Prénom"

@@ -12,10 +12,10 @@ class LoginFormAuthenticatorController extends AbstractController
     #[Route(path: '/login', name: 'app_login')]
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
-        // get the login error if there is one
+        // Erreur de connexion (si existante)
         $error = $authenticationUtils->getLastAuthenticationError();
 
-        // last username entered by the user
+        // Dernier nom d'utilisateur saisi par l'internaute
         $lastUsername = $authenticationUtils->getLastUsername();
 
         return $this->render('loginformauthenticator/login.html.twig', [

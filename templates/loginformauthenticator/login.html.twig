@@ -1,113 +1,73 @@
+{# templates/security/login.html.twig #}
 {% extends 'base.html.twig' %}
-
-{% block title %}Log in!{% endblock %}
+{% block title %}{{ 'auth.log_in'|trans }}{% endblock %}
+{% block stylesheets %}
+  <link rel="stylesheet" href="{{ asset('styles/auth.css') }}">
+{% endblock %}
 
 {% block body %}
-<style>
-/* Titre centré */
-h1 { display:flex; justify-content:center; color:#1e40af; }
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-6 col-lg-5">
+      <div class="card shadow-sm">
+        <div class="card-body p-4">
 
-/* Conteneur du formulaire */
-.form { max-width: 520px; margin: 0 auto; display: grid; gap: 1rem; }
+          <h1 class="h4 text-center mb-4">{{ 'auth.log_in'|trans }}</h1>
 
-/* Un label n’a pas besoin de bordure ni width:100% */
-label { display:block; font-weight:600; margin-bottom:.35rem; }
-
-/* Champs */
-input, select, textarea {
-  width: 100%;
-  box-sizing: border-box;
-  padding: .6rem .8rem;
-  border: 1px solid #ccc;
-  border-radius: .4rem;
-  font: inherit;
-  line-height: 1.4;
-  transition: border-color .2s, box-shadow .2s;
-}
-
-/* Focus accessible (clavier) */
-input:focus-visible, select:focus-visible, textarea:focus-visible {
-  outline: 2px solid #2563eb;         /* bleu */
-  outline-offset: 2px;
-  border-color: #2563eb;
-  box-shadow: 0 0 0 .15rem rgba(37, 235, 103, 0);
-}
-
-/* Survol léger */
-input:hover, select:hover, textarea:hover { border-color: #aaa; }
-
-/* Placeholders plus doux */
-::placeholder { color: #9ca3af; }
-
-/* États de validation natifs */
-input:invalid, select:invalid, textarea:invalid { border-color: #ef4444; }
-input:valid, select:valid, textarea:valid { border-color: #22c55e; }
-
-/* Bouton */
-button {
-  background: #1e40af;
-  color: #fff;
-  padding: .6rem .8rem;
-  border: none;
-  border-radius: .4rem;
-  cursor: pointer;
-  font: inherit;
-  transition: transform .02s, opacity .2s, background .2s;
-}
-button:hover { background: #1b3a99; }
-button:active { transform: translateY(1px); }
-button:disabled { opacity:.6; cursor:not-allowed; }
-
-/* Motion-reduced friendly */
-@media (prefers-reduced-motion: reduce) {
-  * { transition: none !important; }
-}
-
-/* Dark mode auto */
-@media (prefers-color-scheme: dark) {
-  body { background:#0b0f19; color:#e5e7eb; }
-  input, select, textarea { background:#0f172a; color:#e5e7eb; border-color:#334155; }
-  ::placeholder { color:#64748b; }
-  button { background:#3b82f6; }
-  button:hover { background:#2563eb; }
-}
-</style>
-
-    <form method="post">
-        {% if error %}
-            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-        {% endif %}
-
-        {% if app.user %}
-            <div class="mb-3">
-                You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
+          {% if error %}
+            <div class="alert alert-danger">
+              {{ error.messageKey|trans(error.messageData, 'security') }}
             </div>
-        {% endif %}
+          {% endif %}
 
-        <h1 class="h3 mb-3 font-weight-normal">Veuillez Vous Connecter</h1>
-        <fieldset>
-        <label for="username">Email</label>
-        <input type="email" value="{{ last_username }}" name="_username" id="username" class="form-control" autocomplete="email" required autofocus>
-        <label for="password">Mot de passe</label>
-        <input type="password" name="_password" id="password" class="form-control" autocomplete="current-password" required>
-        <input type="hidden" name="_csrf_token" data-controller="csrf-protection" value="{{ csrf_token('authenticate') }}">
-
-        {#
-            Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
-            See https://symfony.com/doc/current/security/remember_me.html
-
-            <div class="checkbox mb-3">
-                <input type="checkbox" name="_remember_me" id="_remember_me">
-                <label for="_remember_me">Remember me</label>
+          {% if app.user %}
+            <div class="alert alert-info">
+              {{ 'auth.logged_in_as'|trans({'%user%': app.user.userIdentifier}) }}
+              <a href="{{ path('app_logout') }}" class="alert-link">{{ 'auth.log_out'|trans }}</a>
             </div>
-        #}
+          {% endif %}
 
-        <button class="btn btn-lg btn-primary" type="submit">
-            Sign in
-        </button>
-        <p class="Inscription"> Pas encore inscrit ? <a href="{{ path('app_register') }}">Inscription</a> </p>
-        <p class="Password"> Mot de passe oublié </p>
+          <form method="post" class="d-grid gap-3" action="{{ path('app_login') }}">
+  <div>
+    <label for="email" class="form-label">{{ 'auth.email'|trans }}</label>
+    <input type="email"
+           id="email"
+           name="email"                
+           class="form-control"
+           value="{{ last_username }}"
+           autocomplete="email"
+           required autofocus>
+  </div>
 
-        </fieldset>
-    </form>
+  <div>
+    <label for="password" class="form-label">{{ 'auth.password'|trans }}</label>
+    <input type="password"
+           id="password"
+           name="password"            
+           class="form-control"
+           autocomplete="current-password"
+           required>
+  </div>
+
+  <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+
+  {# Optionnel : case “Se souvenir de moi” (remember_me activé dans security.yaml) #}
+  <div class="form-check">
+    <input class="form-check-input" type="checkbox" id="_remember_me" name="_remember_me">
+    <label class="form-check-label" for="_remember_me">
+      {{ 'auth.remember_me'|trans }}
+    </label>
+  </div>
+
+  <button class="btn btn-primary w-100 auth-submit" type="submit">
+    {{ 'auth.log_in'|trans }}
+  </button>
+</form>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 {% endblock %}

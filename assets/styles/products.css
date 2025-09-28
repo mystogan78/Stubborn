@@ -1,0 +1,21 @@
+/* assets/styles/products.css */
+.product-img{
+  height: 220px;          /* hauteur constante des vignettes */
+  object-fit: contain;    /* ne déforme pas l'image */
+  background: #f8f9fa;    /* fond léger pour transparents */
+}
+
+.card-title{
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: .25rem;
+}
+
+.price{
+  font-weight: 700;
+}
+
+/* Optionnel : accentuer l’onglet actif */
+.nav-pills .nav-link.active{
+  background-color: #0d6efd; /* primaire Bootstrap */
+}
