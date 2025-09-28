@@ -21,29 +21,29 @@ Projet de création d'un site e-commerce pour une vente en ligne de sweat shirt 
 
 ## 📁 Structure du projet<br>
 
-STUBBORN/
-│ASSET
-├── controllers/
-├── styles/
-├CONFIG/
-├── packages/
-├PUBLIC/
-├──images/
-|SRC/
-├── controller
-├── dataFixtures
-├── entity
-├── form
-├── repository
-├── security
-|TEMPLATES
-├── checkout
-├── home
-├── loginformauthticator
-├── panier
-├── products
-├── register
-├── base.html.twig
-✴️
-├── register
+STUBBORN/<br>
+│ASSET<br>
+├── controllers/<br>
+├── styles/<br>
+├CONFIG/<br>
+├── packages/<br>
+├PUBLIC/<br>
+├──images/<br>
+|SRC/<br>
+├── controller/<br>
+├── dataFixtures/<br>
+├── entity/<br>
+├── form/<br>
+├── repository/<br>
+├── security/<br>
+|TEMPLATES/<br>
+├── checkout/<br>
+├── home/<br>
+├── loginformauthticator/<br>
+├── panier/<br>
+├── products/<br>
+├── register/<br>
+├── base.html.twig/<br>
+✴️<br>
+├── register<br>
 
