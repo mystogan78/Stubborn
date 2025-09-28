@@ -25,9 +25,9 @@ STUBBORN/<br>
 │ASSET<br>
 ├── controllers/<br>
 ├── styles/<br>
-├CONFIG/<br>
+|CONFIG/<br>
 ├── packages/<br>
-├PUBLIC/<br>
+|PUBLIC/<br>
 ├──images/<br>
 |SRC/<br>
 ├── controller/<br>
