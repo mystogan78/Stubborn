@@ -8,3 +8,5 @@ Projet de création d'un site e-commerce pour une vente en ligne de sweat shirt 
 . Utiliser un mode de Paiement<br>
 . Utiliser le mode Administrateur(Backoffice)<br>
 
+## 🪛 Fonctionnalités<br>
+**. SYMFONY**<br>
