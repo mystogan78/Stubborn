@@ -5,51 +5,73 @@ use App\Entity\Utilisateur;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
-use Symfony\Component\Validator\Constraints as Assert; // 👈 alias pratique
+use Symfony\Component\Form\Extension\Core\Type\CountryType;
 
-final class RegistrationFormType extends AbstractType
+use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints\Length;
+
+class RegistrationFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
+            // Identité
             ->add('name', TextType::class, [
                 'label' => 'Nom',
                 'attr' => ['placeholder' => 'Entrez votre nom'],
-                'constraints' => [
-                    new Assert\NotBlank(message: 'Veuillez entrer votre nom'),
-                    new Assert\Length(max: 255),
-                ],
+                'constraints' => [ new NotBlank(message: 'Veuillez entrer votre nom') ],
             ])
             ->add('firstname', TextType::class, [
                 'label' => 'Prénom',
                 'attr' => ['placeholder' => 'Entrez votre prénom'],
-                'constraints' => [
-                    new Assert\NotBlank(message: 'Veuillez entrer votre prénom'),
-                    new Assert\Length(max: 255),
-                ],
+                'constraints' => [ new NotBlank(message: 'Veuillez entrer votre prénom') ],
             ])
+
+            // Contact
             ->add('email', EmailType::class, [
                 'label' => 'Email',
                 'attr' => ['placeholder' => 'Entrez votre email'],
+                'constraints' => [ new NotBlank(message: 'Veuillez entrer votre email') ],
+            ])
+
+            // Adresse postale
+            ->add('address', TextType::class, [
+                'label' => 'Adresse',
+                'attr' => ['placeholder' => '12 rue des Fleurs'],
+                'constraints' => [ new NotBlank(message: 'Veuillez entrer votre adresse') ],
+            ])
+            ->add('postalCode', TextType::class, [
+                'label' => 'Code postal',
+                'attr' => ['placeholder' => '75001'],
                 'constraints' => [
-                    new Assert\NotBlank(message: 'Veuillez entrer votre email'),
-                    new Assert\Email(message: 'Adresse email invalide'),
-                    new Assert\Length(max: 180),
+                    new NotBlank(message: 'Veuillez entrer votre code postal'),
+                    new Length(min: 4, max: 10, minMessage: 'Code postal trop court'),
                 ],
             ])
+            ->add('city', TextType::class, [
+                'label' => 'Ville',
+                'attr' => ['placeholder' => 'Paris'],
+                'constraints' => [ new NotBlank(message: 'Veuillez entrer votre ville') ],
+            ])
+            ->add('country', CountryType::class, [
+                'label' => 'Pays',
+                'placeholder' => 'Sélectionnez un pays',
+                'preferred_choices' => ['FR'],
+                'constraints' => [ new NotBlank(message: 'Veuillez choisir un pays') ],
+            ])
+
+            // Mot de passe (répété)
             ->add('plainPassword', RepeatedType::class, [
                 'type' => PasswordType::class,
-                'mapped' => false,                      // ✅ on hash dans le contrôleur
+                'mapped' => false,
                 'first_options' => [
                     'label' => 'Mot de passe',
-                    'attr' => [
-                        'placeholder' => 'Entrez votre mot de passe',
-                        'autocomplete' => 'new-password',
-                    ],
+                    'attr' => ['placeholder' => 'Entrez votre mot de passe'],
                 ],
                 'second_options' => [
                     'label' => 'Confirmer le mot de passe',
@@ -57,18 +79,18 @@ final class RegistrationFormType extends AbstractType
                 ],
                 'invalid_message' => 'Les deux mots de passe doivent correspondre',
                 'constraints' => [
-                    new Assert\NotBlank(message: 'Veuillez entrer un mot de passe'),
-                    new Assert\Length(min: 8, minMessage: 'Au moins 8 caractères'),
-                   
+                    new NotBlank(message: 'Veuillez entrer un mot de passe'),
+                    new Length(min: 8, minMessage: 'Au moins 8 caractères'),
                 ],
-            ]);
+            ])
+        ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             'data_class' => Utilisateur::class,
-            'validation_groups' => ['Default'], //  'hashed' 👈
+            // 'translation_domain' => 'messages', // si tu utilises les traductions
         ]);
     }
 }

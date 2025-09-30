@@ -12,14 +12,14 @@ final class ProductFixtures extends Fixture
     {
         
         $models = [
-            ['name' => 'Blackbelt', 'price' => 29.90, 'img' => 'images/products/Sweat_black.png','featured' => false],
-            ['name' => 'BlueBelt',  'price' => 29.90, 'img' => 'images/products/Sweat_blue.png', 'featured' => false],
-            ['name' => 'Street',    'price' => 34.50, 'img' => 'images/products/Sweat_orange.png', 'featured' => true],
-            ['name' => 'redball',  'price' => 45.00, 'img' => 'images/products/Sweat_red.png',  'featured' => false],
-            ['name' => 'PinkLady',  'price' => 29.90, 'img' => 'images/products/Sweat_pink.png','featured' => true],
-            ['name' => 'Snow',      'price' => 29.90, 'img' => 'images/products/Sweat_white.png','featured' => false],
-            ['name' => 'Greenback',  'price' => 34.50, 'img' => 'images/products/Sweat_green.png',  'featured' => true],
-            ['name' => 'BlueCloud', 'price' => 34.50, 'img' => 'images/products/Sweat_blue2.png','featured' => false],
+            ['name' => 'Blackbelt', 'price' => 29.90, 'img' => 'images/products/1.jpeg','featured' => false],
+            ['name' => 'BlueBelt',  'price' => 29.90, 'img' => 'images/products/8.jpeg', 'featured' => false],
+            ['name' => 'OrangeStreet', 'price' => 34.50, 'img' => 'images/products/3.jpeg', 'featured' => true],
+            ['name' => 'StreetBall',  'price' => 45.00, 'img' => 'images/products/9.jpeg',  'featured' => false],
+            ['name' => 'PinkLady',  'price' => 29.90, 'img' => 'images/products/5.jpeg','featured' => true],
+            ['name' => 'Snow',   'price' => 29.90, 'img' => 'images/products/6.jpeg','featured' => false],
+            ['name' => 'Greenback',  'price' => 34.50, 'img' => 'images/products/10.jpeg',  'featured' => true],
+            ['name' => 'BlueNight', 'price' => 34.50, 'img' => 'images/products/2.jpeg','featured' => false],
         ];
 
         foreach ($models as $m) {
