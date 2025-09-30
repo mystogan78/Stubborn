@@ -34,15 +34,9 @@
           <div class="card h-100 shadow-sm">
 
             <a href="{{ path('app_product_show', { id: p.id }) }}" class="text-decoration-none text-reset">
-              {% set imageSrc = p.imageUrl
-                ? asset('images/products/' ~ p.imageUrl)
-                : asset('images/placeholder.png') %}
-              <img
-                src="{{ imageSrc }}"
-                class="card-img-top product-img"
-                alt="{{ p.name }}"
-                loading="lazy"
-              >
+              {% set imageSrc = p.imageUrl ? asset(p.imageUrl) : asset('images/placeholder.png') %}
+<img src="{{ imageSrc }}" class="card-img-top product-img" alt="{{ p.name }}" loading="lazy">
+
             </a>
 
             <div class="card-body d-flex flex-column">

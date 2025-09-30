@@ -13,15 +13,9 @@
     <div class="row g-4 align-items-start product">
       <div class="col-12 col-md-5">
         <div class="ratio ratio-1x1 product__image-wrapper">
-          {% set imageSrc = product.imageUrl
-            ? asset('images/products/' ~ product.imageUrl)
-            : asset('images/placeholder.png') %}
-          <img
-            src="{{ imageSrc }}"
-            class="img-fluid rounded product__image"
-            alt="{{ product.name }}"
-            loading="lazy"
-          >
+          {% set imageSrc = p.imageUrl ? asset(p.imageUrl) : asset('images/placeholder.png') %}
+<img src="{{ imageSrc }}" class="card-img-top product-img" alt="{{ p.name }}" loading="lazy">
+
         </div>
       </div>
 
