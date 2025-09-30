@@ -42,7 +42,7 @@ security:
     - { path: ^/verify/email, roles: PUBLIC_ACCESS }
     - { path: ^/home, roles: PUBLIC_ACCESS }
     - { path: ^/admin, roles: ROLE_ADMIN }
-    - { path: ^/checkout, roles: ROLE_USER }
+    - { path: ^/checkout/(success|cancel|create), roles: PUBLIC_ACCESS }
 
 when@test:
   security:
