@@ -105,6 +105,8 @@ CVC : 123
 ✅ Paiement sécurisé via Stripe
 ✅ Enregistrement automatique des commandes
 ✅ Affichage de l’historique des commandes
+
+
 ⚙️ Configuration de l'environnement
 
 Le projet utilise un fichier d’environnement (.env.local) pour les variables sensibles (base de données, clés API, etc.).
