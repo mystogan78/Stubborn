@@ -14,6 +14,7 @@ products:
   back: "Back to products"
   picture: "Image"
   empty: "No products."
+  
 
 product:
   size: "Size"
@@ -51,3 +52,31 @@ auth:
 user:
   name: "Last name"
   firstname: "First name"
+
+table:
+  product: "Product"
+  price: "Price"
+  quantity: "Quantity"
+  total: "Total"
+  actions: "Actions"
+
+order:
+  title: "My orders"
+  empty: "You have no orders."
+  id: "Order ID"
+  date: "Date" 
+  status: "Status"
+  details: "Details"
+  amount: "Amount"
+  back: "Back to orders"
+  show_title: "Order details"
+  created_at: "Created at"
+  order_total: "Order total"
+  order_items: "Items in this order"
+  details_title: "Order #%id%"
+  line_total: "Line total"
+
+
+
+
+

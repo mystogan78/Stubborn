@@ -1,8 +1,9 @@
-
 ###> symfony/framework-bundle ###
 /.env.local
 /.env.local.php
 /.env.*.local
+/.env.dev
+/.env.dev.local
 /config/secrets/prod/prod.decrypt.private.php
 /public/bundles/
 /var/
@@ -18,3 +19,21 @@
 /public/assets/
 /assets/vendor/
 ###< symfony/asset-mapper ###
+
+###> IDE & system files ###
+# VS Code
+.vscode/
+
+# PHPStorm / IntelliJ
+.idea/
+
+# Windows / MacOS files
+Thumbs.db
+.DS_Store
+ehthumbs.db
+Desktop.ini
+
+# Logs & cache
+*.log
+/logs/
+###< IDE & system files ###

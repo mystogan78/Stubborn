@@ -35,6 +35,7 @@ cart:
   keep_shopping: "← Continuer vos achats"
   actions: "Actions"
  
+ 
 
 auth:
   log_in: "Connexion"
@@ -54,3 +55,29 @@ auth:
 user:
   name: "Nom"
   firstname: "Prénom"
+
+
+table:
+  product: "Produit"
+  price: "Prix"
+  quantity: "Quantité"
+  total: "Total"
+  actions: "Actions"
+
+
+orders:
+  title: "Mes commandes"
+  empty: "Aucune commande pour le moment."
+  id: "Numéro"
+  date: "Date"
+  status: "Statut"
+  amount: "Montant total"
+  details: "Détails"
+  back: "← Retour à mes commandes"
+  show_title: "Commande #%id%"
+  created_at: "Date de création"
+  order_total: "Total commande"
+  order_items: "Articles de la commande"
+  details_title: "Commande n°%id%"
+  line_total: "Total ligne"
+

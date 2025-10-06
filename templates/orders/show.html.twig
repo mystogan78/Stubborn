@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'orders.details_title'|trans({'%id%': order.id}) }}{% endblock %}
+
+{% block body %}
+<div class="container py-4">
+  <h1 class="h5 mb-3">{{ 'orders.details_title'|trans({'%id%': order.id}) }}</h1>
+
+  <div class="mb-3">
+    <div>{{ 'orders.date'|trans }} : {{ order.createdAt|date('d/m/Y H:i') }}</div>
+    <div>{{ 'orders.status'|trans }} : <span class="badge text-bg-secondary">{{ order.status }}</span></div>
+    <div>{{ 'orders.amount'|trans }} : <strong>{{ (order.totalCents / 100)|number_format(2, ',', ' ') }} €</strong></div>
+  </div>
+
+  <div class="table-responsive">
+    <table class="table align-middle">
+      <thead>
+        <tr>
+          <th>{{ 'table.product'|trans }}</th>
+          <th>{{ 'table.price'|trans }}</th>
+          <th>{{ 'table.quantity'|trans }}</th>
+          <th>{{ 'orders.line_total'|trans }}</th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for it in order.items %}
+        <tr>
+          <td>{{ it.product ? it.product.name : 'Produit indisponible' }}</td>
+          <td>{{ (it.unitPriceCents / 100)|number_format(2, ',', ' ') }} €</td>
+          <td>{{ it.quantity }}</td>
+          <td>{{ (it.lineTotalCents / 100)|number_format(2, ',', ' ') }} €</td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <a href="{{ path('app_orders') }}" class="btn btn-outline-secondary">
+    {{ 'orders.back'|trans }}
+  </a>
+</div>
+{% endblock %}

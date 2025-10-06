@@ -49,16 +49,17 @@
             <tr>
               {# 1) Image #}
               <td class="cart-thumb">
-                {% set imageSrc = it.product.imageUrl
-                  ? asset('images/products/' ~ it.product.imageUrl)
-                  : asset('images/placeholder.png') %}
-                <img
-                  src="{{ imageSrc }}"
-                  alt="{{ it.product.name }}"
-                  class="img-thumbnail cart-thumb-img"
-                  loading="lazy"
-                >
-              </td>
+  {% set imageSrc = it.product.imageUrl
+    ? asset(it.product.imageUrl)
+    : asset('images/placeholder.png') %}
+  <img
+    src="{{ imageSrc }}"
+    alt="{{ it.product.name }}"
+    class="img-thumbnail cart-thumb-img"
+    loading="lazy"
+  >
+</td>
+
 
               {# 2) Produit #}
               <td>
@@ -133,7 +134,7 @@
     </div>
 
     {# Stripe JS #}
-    <script src="https://js.stripe.com/v3/"></script>
+   
     <script>
       const stripe = Stripe('{{ stripe_public_key }}'); // défini dans twig.yaml
 
