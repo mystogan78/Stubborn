@@ -105,6 +105,39 @@ CVC : 123
 ✅ Paiement sécurisé via Stripe
 ✅ Enregistrement automatique des commandes
 ✅ Affichage de l’historique des commandes
+⚙️ Configuration de l'environnement
+
+Le projet utilise un fichier d’environnement (.env.local) pour les variables sensibles (base de données, clés API, etc.).
+👉 Ce fichier n’est pas inclus dans le dépôt Git pour des raisons de sécurité.
+
+Un modèle est fourni :
+
+.env.example
+
+🧩 Étapes à suivre
+
+Dupliquer le fichier .env.example :
+
+cp .env.example .env.local
+
+
+Ouvrir le fichier .env.local et renseigner vos propres informations :
+
+APP_ENV=dev
+APP_DEBUG=1
+APP_SECRET=votre_cle_secrete
+
+DATABASE_URL="mysql://root:@127.0.0.1:3306/stubborn?serverVersion=8.0&charset=utf8mb4"
+
+STRIPE_PUBLIC_KEY=pk_test_votre_cle_publique
+STRIPE_SECRET_KEY=sk_test_votre_cle_secrete
+
+MAILER_DSN=null://null
+
+
+Sauvegarder, puis exécuter :
+
+php bin/console cache:clear
 
 👨‍💻 Auteur
 
