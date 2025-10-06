@@ -1,6 +1,10 @@
 # 🧢 STUBBORN  
 > **Site e-commerce de vente de sweats – Projet Symfony**
 
+<p align="center">
+  <img src="public/images/Logo.png" alt="Logo Stubborn" width="200"/>
+</p>
+
 ![Symfony](https://img.shields.io/badge/Symfony-7.3-black?style=for-the-badge&logo=symfony)
 ![PHP](https://img.shields.io/badge/PHP-8.2-blue?style=for-the-badge&logo=php)
 ![Bootstrap](https://img.shields.io/badge/Bootstrap-5.3-purple?style=for-the-badge&logo=bootstrap)
@@ -25,7 +29,7 @@ L’objectif : proposer une boutique fonctionnelle avec authentification, panier
 - 💳 Paiement en ligne via **Stripe**
 - 📦 Consultation des commandes
 - 🧰 Accès administrateur *(Back-office)*
-- ✉️ Envoi de mails avec **Mailer DSN**
+- ✉️ Envoi d’emails avec **Mailer DSN**
 
 ---
 
@@ -42,38 +46,35 @@ L’objectif : proposer une boutique fonctionnelle avec authentification, panier
 
 ---
 
-## 🗂️ Structure du projet
+## 📁 Structure du projet
 
-
-## 📁 Structure du projet<br>
-
-### STUBBORN/<br>
-##### ASSET<br>
-├── controllers/<br>
-├── styles/<br>
-##### CONFIG/<br>
-├── packages/<br>
-##### PUBLIC/<br>
-├──images/<br>
-##### SRC/<br>
-├── controller/<br>
-├── dataFixtures/<br>
-├── entity/<br>
-├── form/<br>
-├── repository/<br>
-├── security/<br>
-##### TEMPLATES/<br>
-├── checkout/<br>
-├── home/<br>
-├── loginformauthticator/<br>
-├── panier/<br>
-├── products/<br>
-├── register/<br>
-├── base.html.twig/<br>
-⚙️.env<br>
-💲.env.dev.local<br>
-🔡README.md<br>
-
+```
+STUBBORN/
+├── assets/
+│   ├── controllers/
+│   └── styles/
+├── config/
+│   └── packages/
+├── public/
+│   ├── images/
+│   └── index.php
+├── src/
+│   ├── Controller/
+│   ├── DataFixtures/
+│   ├── Entity/
+│   ├── Form/
+│   ├── Repository/
+│   └── Security/
+├── templates/
+│   ├── checkout/
+│   ├── home/
+│   ├── panier/
+│   ├── products/
+│   ├── register/
+│   └── base.html.twig
+├── .env.example
+└── README.md
+```
 
 ---
 
@@ -81,50 +82,56 @@ L’objectif : proposer une boutique fonctionnelle avec authentification, panier
 
 ```bash
 # 1. Cloner le dépôt
-git clone https://github.com/mystogan78/MONPORTOFOLIO.git
+git clone https://github.com/mystogan78/Stubborn.git
 
 # 2. Installer les dépendances
 composer install
 
 # 3. Lancer le serveur Symfony
 symfony server:start --port=8000
+```
 
-💳 Paiement de test Stripe
+---
+
+## 💳 Paiement de test Stripe
 
 Pour tester le paiement, utilisez la carte suivante :
 
-Numéro : 4242 4242 4242 4242  
-Date d’expiration : 12/34  
-CVC : 123  
+- **Numéro** : 4242 4242 4242 4242  
+- **Expiration** : 12/34  
+- **CVC** : 123  
 
-🧾 Exemple de fonctionnalités
+---
 
-✅ Inscription et connexion utilisateur
-✅ Ajout et suppression d’articles dans le panier
-✅ Calcul automatique du total
-✅ Paiement sécurisé via Stripe
-✅ Enregistrement automatique des commandes
-✅ Affichage de l’historique des commandes
+## 🧾 Fonctionnalités principales
 
+✅ Inscription et connexion utilisateur  
+✅ Ajout et suppression d’articles dans le panier  
+✅ Calcul automatique du total  
+✅ Paiement sécurisé via Stripe  
+✅ Enregistrement automatique des commandes  
+✅ Affichage de l’historique des commandes  
 
- ⚙️ Configuration de l'environnement
+---
 
-Le projet utilise un fichier d’environnement (.env.local) pour les variables sensibles (base de données, clés API, etc.).
-👉 Ce fichier n’est pas inclus dans le dépôt Git pour des raisons de sécurité.
+## ⚙️ Configuration de l'environnement
 
-Un modèle est fourni :
+Le projet utilise un fichier d’environnement `.env.local` pour les variables sensibles (base de données, clés API, etc.).  
+👉 Ce fichier **n’est pas inclus dans le dépôt Git** pour des raisons de sécurité.
 
-.env.example
+Un modèle est fourni :  
+➡️ **`.env.example`**
 
-🧩 Étapes à suivre
+### Étapes à suivre
 
-Dupliquer le fichier .env.example :
-
+```bash
+# Dupliquer le modèle
 cp .env.example .env.local
+```
 
+Ensuite, ouvrez le fichier `.env.local` et ajoutez vos informations :
 
-Ouvrir le fichier .env.local et renseigner vos propres informations :
-
+```env
 APP_ENV=dev
 APP_DEBUG=1
 APP_SECRET=votre_cle_secrete
@@ -135,20 +142,25 @@ STRIPE_PUBLIC_KEY=pk_test_votre_cle_publique
 STRIPE_SECRET_KEY=sk_test_votre_cle_secrete
 
 MAILER_DSN=null://null
+```
 
-
-Sauvegarder, puis exécuter :
-
+Puis videz le cache :
+```bash
 php bin/console cache:clear
+```
 
-👨‍💻 Auteur
+---
 
-Ibrahim
+## 👨‍💻 Auteur
 
-Projet réalisé dans le cadre de la formation Développeur Web.
-GitHub – mystogan78
+**Ibrahim**  
+Projet réalisé dans le cadre de la formation **Développeur Web**  
+📦 GitHub : [mystogan78](https://github.com/mystogan78)
 
-📜 Licence
+---
 
-Ce projet est distribué sous licence MIT.
+## 📜 Licence
+
+Ce projet est distribué sous licence **MIT**.  
 Vous êtes libre de le modifier et de le réutiliser à des fins éducatives.
+
