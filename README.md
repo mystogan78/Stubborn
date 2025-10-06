@@ -107,7 +107,7 @@ CVC : 123
 ✅ Affichage de l’historique des commandes
 
 
-⚙️ Configuration de l'environnement
+ ⚙️ Configuration de l'environnement
 
 Le projet utilise un fichier d’environnement (.env.local) pour les variables sensibles (base de données, clés API, etc.).
 👉 Ce fichier n’est pas inclus dans le dépôt Git pour des raisons de sécurité.
